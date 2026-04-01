@@ -6,14 +6,65 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E493B52F2F7D3AB700C632B0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E493B52E2F7D3AB700C632B0 /* WidgetKit.framework */; };
+		E493B5312F7D3AB700C632B0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E493B5302F7D3AB700C632B0 /* SwiftUI.framework */; };
+		E493B53C2F7D3AB800C632B0 /* swiftui-github-activity-widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E493B52C2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E493B53A2F7D3AB800C632B0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E493B4F22F7D392500C632B0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E493B52B2F7D3AB700C632B0;
+			remoteInfo = "swiftui-github-activity-widgetExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E493B53D2F7D3AB800C632B0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E493B53C2F7D3AB800C632B0 /* swiftui-github-activity-widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E493B4FA2F7D392500C632B0 /* swiftui-github-activity-monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftui-github-activity-monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E493B52C2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "swiftui-github-activity-widgetExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E493B52E2F7D3AB700C632B0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E493B5302F7D3AB700C632B0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E493B5402F7D3AB800C632B0 /* Exceptions for "swiftui-github-activity-widget" folder in "swiftui-github-activity-widgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E493B52B2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		E493B4FC2F7D392500C632B0 /* swiftui-github-activity-monitor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "swiftui-github-activity-monitor";
+			sourceTree = "<group>";
+		};
+		E493B5322F7D3AB700C632B0 /* swiftui-github-activity-widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E493B5402F7D3AB800C632B0 /* Exceptions for "swiftui-github-activity-widget" folder in "swiftui-github-activity-widgetExtension" target */,
+			);
+			path = "swiftui-github-activity-widget";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,6 +77,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E493B5292F7D3AB700C632B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E493B5312F7D3AB700C632B0 /* SwiftUI.framework in Frameworks */,
+				E493B52F2F7D3AB700C632B0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -33,6 +93,8 @@
 			isa = PBXGroup;
 			children = (
 				E493B4FC2F7D392500C632B0 /* swiftui-github-activity-monitor */,
+				E493B5322F7D3AB700C632B0 /* swiftui-github-activity-widget */,
+				E493B52D2F7D3AB700C632B0 /* Frameworks */,
 				E493B4FB2F7D392500C632B0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +103,18 @@
 			isa = PBXGroup;
 			children = (
 				E493B4FA2F7D392500C632B0 /* swiftui-github-activity-monitor.app */,
+				E493B52C2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E493B52D2F7D3AB700C632B0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E493B52E2F7D3AB700C632B0 /* WidgetKit.framework */,
+				E493B5302F7D3AB700C632B0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +127,12 @@
 				E493B4F62F7D392500C632B0 /* Sources */,
 				E493B4F72F7D392500C632B0 /* Frameworks */,
 				E493B4F82F7D392500C632B0 /* Resources */,
+				E493B53D2F7D3AB800C632B0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E493B53B2F7D3AB800C632B0 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E493B4FC2F7D392500C632B0 /* swiftui-github-activity-monitor */,
@@ -69,6 +143,28 @@
 			productName = "swiftui-github-activity-monitor";
 			productReference = E493B4FA2F7D392500C632B0 /* swiftui-github-activity-monitor.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E493B52B2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E493B5412F7D3AB800C632B0 /* Build configuration list for PBXNativeTarget "swiftui-github-activity-widgetExtension" */;
+			buildPhases = (
+				E493B5282F7D3AB700C632B0 /* Sources */,
+				E493B5292F7D3AB700C632B0 /* Frameworks */,
+				E493B52A2F7D3AB700C632B0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E493B5322F7D3AB700C632B0 /* swiftui-github-activity-widget */,
+			);
+			name = "swiftui-github-activity-widgetExtension";
+			packageProductDependencies = (
+			);
+			productName = "swiftui-github-activity-widgetExtension";
+			productReference = E493B52C2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +177,9 @@
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
 					E493B4F92F7D392500C632B0 = {
+						CreatedOnToolsVersion = 26.4;
+					};
+					E493B52B2F7D3AB700C632B0 = {
 						CreatedOnToolsVersion = 26.4;
 					};
 				};
@@ -100,12 +199,20 @@
 			projectRoot = "";
 			targets = (
 				E493B4F92F7D392500C632B0 /* swiftui-github-activity-monitor */,
+				E493B52B2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E493B4F82F7D392500C632B0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E493B52A2F7D3AB700C632B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +229,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E493B5282F7D3AB700C632B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E493B53B2F7D3AB800C632B0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E493B52B2F7D3AB700C632B0 /* swiftui-github-activity-widgetExtension */;
+			targetProxy = E493B53A2F7D3AB800C632B0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E493B5032F7D392600C632B0 /* Debug */ = {
@@ -303,6 +425,66 @@
 			};
 			name = Release;
 		};
+		E493B53E2F7D3AB800C632B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "swiftui-github-activity-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "swiftui-github-activity-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.kosik.swiftui-github-activity-monitor.swiftui-github-activity-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E493B53F2F7D3AB800C632B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "swiftui-github-activity-widget/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "swiftui-github-activity-widget";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "me.kosik.swiftui-github-activity-monitor.swiftui-github-activity-widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -320,6 +502,15 @@
 			buildConfigurations = (
 				E493B5062F7D392600C632B0 /* Debug */,
 				E493B5072F7D392600C632B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E493B5412F7D3AB800C632B0 /* Build configuration list for PBXNativeTarget "swiftui-github-activity-widgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E493B53E2F7D3AB800C632B0 /* Debug */,
+				E493B53F2F7D3AB800C632B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
