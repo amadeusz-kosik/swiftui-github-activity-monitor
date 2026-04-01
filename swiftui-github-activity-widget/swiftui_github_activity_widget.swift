@@ -8,28 +8,43 @@
 import WidgetKit
 import SwiftUI
 
+
+
+struct SimpleEntry: TimelineEntry {
+    let date: Date
+    let allEvents: [Int]
+    let repos: [String]
+    let repoEvents: [[String : Int]]
+}
+
+
 struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), emoji: "😀")
+        SimpleEntry(
+            date: Date(),
+            allEvents: [2, 3, 0, 6, 9, 2, 0, 9, 1, 4 ],
+            repos: ["repo 1", "repo 2", "repo 3"],
+            repoEvents: [
+                ["repo 1": 2, "repo 2": 0, "repo 3": 0],
+                ["repo 1": 2, "repo 2": 1, "repo 3": 0],
+                ["repo 1": 0, "repo 2": 0, "repo 3": 0],
+                ["repo 1": 0, "repo 2": 3, "repo 3": 3],
+                ["repo 1": 0, "repo 2": 6, "repo 3": 3],
+                ["repo 1": 2, "repo 2": 0, "repo 3": 0],
+                ["repo 1": 0, "repo 2": 0, "repo 3": 0],
+                ["repo 1": 6, "repo 2": 0, "repo 3": 3],
+                ["repo 1": 0, "repo 2": 0, "repo 3": 1],
+                ["repo 1": 0, "repo 2": 2, "repo 3": 2]
+            ]
+        )
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), emoji: "😀")
-        completion(entry)
+        completion(placeholder(in: context))
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, emoji: "😀")
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: [placeholder(in: context)], policy: .atEnd)
         completion(timeline)
     }
 
@@ -38,42 +53,51 @@ struct Provider: TimelineProvider {
 //    }
 }
 
-struct SimpleEntry: TimelineEntry {
-    let date: Date
-    let emoji: String
-}
 
-struct swiftui_github_activity_widgetEntryView : View {
+struct GitHubActivityWidgetView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            HStack {
-                Text("Time:")
-                Text(entry.date, style: .time)
+        VStack(alignment: .leading, spacing: 4) {
+            Text("Overall activity:")
+            HStack(spacing: 4) { // spacing between squares
+                ForEach(0 ..< 10) { index in
+                    Rectangle()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(entry.allEvents[index] > 0 ? .blue : .gray.opacity(0.3))
+                        .cornerRadius(4)
+                }
             }
-
-            Text("Emoji:")
-            Text(entry.emoji)
+            ForEach(entry.repos, id: \.self) { repo in
+                Text(repo + ":")
+                HStack(spacing: 4) {
+                    ForEach(0 ..< 10) { index in
+                        Rectangle()
+                            .frame(width: 20, height: 20)
+                            .foregroundColor(entry.repoEvents[index][repo] ?? 0 > 0 ? .blue : .gray.opacity(0.3))
+                            .cornerRadius(4)
+                    }
+                }
+            }
         }
     }
 }
 
-struct swiftui_github_activity_widget: Widget {
-    let kind: String = "swiftui_github_activity_widget"
+struct GitHubActivityWidget: Widget {
+    let kind: String = "github_activity_widget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             if #available(macOS 14.0, *) {
-                swiftui_github_activity_widgetEntryView(entry: entry)
+                GitHubActivityWidgetView(entry: entry)
                     .containerBackground(.fill.tertiary, for: .widget)
             } else {
-                swiftui_github_activity_widgetEntryView(entry: entry)
+                GitHubActivityWidgetView(entry: entry)
                     .padding()
                     .background()
             }
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("GitHub Activity")
+        .description("Your activity on GitHub and top three repositories.")
     }
 }

@@ -11,6 +11,6 @@ import SwiftUI
 @main
 struct swiftui_github_activity_widgetBundle: WidgetBundle {
     var body: some Widget {
-        swiftui_github_activity_widget()
+        GitHubActivityWidget()
     }
 }
