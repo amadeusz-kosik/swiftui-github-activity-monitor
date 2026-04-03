@@ -9,12 +9,34 @@ import WidgetKit
 import SwiftUI
 
 
-
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let allEvents: [Int]
+    let allEvents: [Bool]
     let repos: [String]
-    let repoEvents: [[String : Int]]
+    let repoEvents: [String : [Bool]]
+}
+
+
+struct SquareStreakBar: View {
+    var progress: [Bool]
+
+    var body: some View {
+        GeometryReader { geo in
+            let totalWidth = geo.size.width
+            let spacing: CGFloat = 4
+            let squareWidth: CGFloat = 15
+            let squareCount: CGFloat = min(30, (totalWidth + spacing) / (squareWidth + spacing))
+
+            HStack(spacing: spacing) {
+                ForEach(0 ..< Int(squareCount), id: \.self) { index in
+                    Rectangle()
+                        .frame(width: squareWidth, height: squareWidth) // square
+                        .foregroundColor(progress[index] ? .blue : .gray.opacity(0.3))
+                        .cornerRadius(4)
+                }
+            }
+        }
+    }
 }
 
 
@@ -22,19 +44,12 @@ struct Provider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(
             date: Date(),
-            allEvents: [2, 3, 0, 6, 9, 2, 0, 9, 1, 4 ],
+            allEvents: (0 ..< 30).map { _ in Bool.random() },
             repos: ["repo 1", "repo 2", "repo 3"],
             repoEvents: [
-                ["repo 1": 2, "repo 2": 0, "repo 3": 0],
-                ["repo 1": 2, "repo 2": 1, "repo 3": 0],
-                ["repo 1": 0, "repo 2": 0, "repo 3": 0],
-                ["repo 1": 0, "repo 2": 3, "repo 3": 3],
-                ["repo 1": 0, "repo 2": 6, "repo 3": 3],
-                ["repo 1": 2, "repo 2": 0, "repo 3": 0],
-                ["repo 1": 0, "repo 2": 0, "repo 3": 0],
-                ["repo 1": 6, "repo 2": 0, "repo 3": 3],
-                ["repo 1": 0, "repo 2": 0, "repo 3": 1],
-                ["repo 1": 0, "repo 2": 2, "repo 3": 2]
+                "repo 1": (0 ..< 30).map { _ in Bool.random() },
+                "repo 2": (0 ..< 30).map { _ in Bool.random() },
+                "repo 3": (0 ..< 30).map { _ in Bool.random() }
             ]
         )
     }
@@ -60,25 +75,8 @@ struct GitHubActivityWidgetView : View {
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text("Overall activity:")
-            HStack(spacing: 4) { // spacing between squares
-                ForEach(0 ..< 10) { index in
-                    Rectangle()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(entry.allEvents[index] > 0 ? .blue : .gray.opacity(0.3))
-                        .cornerRadius(4)
-                }
-            }
-            ForEach(entry.repos, id: \.self) { repo in
-                Text(repo + ":")
-                HStack(spacing: 4) {
-                    ForEach(0 ..< 10) { index in
-                        Rectangle()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(entry.repoEvents[index][repo] ?? 0 > 0 ? .blue : .gray.opacity(0.3))
-                            .cornerRadius(4)
-                    }
-                }
-            }
+                .lineLimit(1)
+            SquareStreakBar(progress: entry.allEvents)
         }
     }
 }
